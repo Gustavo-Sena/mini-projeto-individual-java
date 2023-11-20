@@ -55,16 +55,17 @@ public class StatusPcDAO {
     public static void cadastrarCapturas( StatusPc statusMemoria, StatusPc statusProcessador, StatusPc Disco,
                                          StatusPc dtHora, Computador computador) {
         String sql = "INSERT INTO status_pc " +
-                "(memoriaUso, processadorUso, discoDisponivel, dtHoraCaptura, fkComputador) " +
-                "VALUES (?, ?, ?, ?, ?)";
+                "(memoriaUso, processadorUso, discoDisponivel, tempProcessador, dtHoraCaptura, fkComputador) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = null;
         try {
             ps = Conexao.getConexao().prepareStatement(sql);
             ps.setLong(1, statusMemoria.getMemoriaUso());
             ps.setDouble(2, statusProcessador.getProcessadorEmUso());
             ps.setDouble(3, Disco.getDiscoDisponivel());
-            ps.setString(4, dtHora.getDtHoraCaptura());
-            ps.setInt(5, computador.getId());
+            ps.setDouble(4, statusProcessador.getTempProcessador());
+            ps.setString(5, dtHora.getDtHoraCaptura());
+            ps.setString(6, computador.getId());
             ps.execute();
 
             String dataFormatadaa = dtHora.getDtHoraCaptura();
@@ -81,7 +82,8 @@ public class StatusPcDAO {
                                                                                                                   
                               cpu em uso: %.2f                
                             Memórria em uso: %s               
-                           Disco Disponivel: %s               
+                           Disco Disponivel: %s
+                         Temperatura do Processador: %.2f               
                        data/hora da captura: %s            
                                                               
                 +================================================+      
@@ -89,7 +91,7 @@ public class StatusPcDAO {
                 """,
                     statusProcessador.getProcessadorEmUso(),
                     Conversor.formatarBytes(statusMemoria.getMemoriaUso()),
-                    Conversor.formatarBytes(Disco.getDiscoDisponivel()),
+                    Conversor.formatarBytes(Disco.getDiscoDisponivel()), statusProcessador.getTempProcessador(),
                     dataFormatada));
         } catch (SQLException e) {
             e.printStackTrace();
