@@ -198,18 +198,6 @@ public class App {
                             Long discoEmUso = disco.getVolumes().get(0).getDisponivel();
                             discoDisponivel.setDiscoDisponivel(discoEmUso);
 
-                            // Crie uma instância do SystemInfo
-                            SystemInfo systemInfo = new SystemInfo();
-
-                            // Obtenha a camada de abstração de hardware
-                            HardwareAbstractionLayer hardware = systemInfo.getHardware();
-
-                            // Obtenha as informações do sensor
-                            Sensors sensors = hardware.getSensors();
-
-                            // Obtenha a temperatura do processador
-                            Double cpuTemperature = sensors.getCpuTemperature();
-                            processadorUso.setTempProcessador(cpuTemperature);
 
                             StatusPcDAO.cadastrarCapturas(memoriaUso, processadorUso, discoDisponivel, dtHoraCaptura, computador);
 
