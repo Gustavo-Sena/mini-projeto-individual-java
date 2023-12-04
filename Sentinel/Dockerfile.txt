@@ -1,5 +1,0 @@
-FROM openjdk:17
-
-COPY ./Sentinel/target/Sentinel-1.0
-
-ENTRYPOINT ["java", "-jar", "/Sentinel-1.0.jar"]

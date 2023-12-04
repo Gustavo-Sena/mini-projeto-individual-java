@@ -1,13 +1,15 @@
 package Conexao;
+import Logger.Mensageiro;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexao {
     //Atributos para conexão do banco de dados
-    private static final String url = "jdbc:mysql://localhost:3306/prj_sprint";
+    private static final String url = "jdbc:mysql://172.17.0.2/prj_sprint";
     private static final String user = "root";
-    private static final String password = "Cringe1305!";
+    private static final String password = "123";
 
     private static final String urlSQLServer = "jdbc:sqlserver://ec2-54-159-156-118.compute-1.amazonaws.com:1433;database=prj_sprint" +
             ";encrypt=false;trustServerCertificate=true;";

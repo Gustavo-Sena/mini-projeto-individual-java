@@ -3,91 +3,90 @@ CREATE DATABASE IF NOT EXISTS prj_sprint;
 USE prj_sprint;
 
 CREATE TABLE tbEmpresa(
-                          idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
-                          nomeFantasia VARCHAR(150) NOT NULL,
-                          razaoSocial VARCHAR(150) NOT NULL,
-                          cnpj CHAR(18) unique NOT NULL,
-                          telefone char(14) NOT NULL,
-                          limiteAlerta INT DEFAULT 60
+	idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+    nomeFantasia VARCHAR(150) NOT NULL,
+    razaoSocial VARCHAR(150) NOT NULL,
+    cnpj CHAR(18) unique NOT NULL,
+    telefone char(14) NOT NULL,
+    limiteAlerta INT DEFAULT 60
 );
 
 CREATE TABLE tbUsuario(
-                          idUsuario INT PRIMARY KEY AUTO_INCREMENT,
-                          nome VARCHAR(100) NOT NULL,
-                          sobrenome VARCHAR(100) NOT NULL,
-                          email varchar(100) unique NOT NULL,
-                          senha VARCHAR(200) NOT NULL,
-                          tipoUsuario CHAR(5),
-                          fkEmpresa INT,
-                          FOREIGN KEY (fkEmpresa) REFERENCES tbEmpresa (idEmpresa)
+	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    sobrenome VARCHAR(100) NOT NULL,
+    email varchar(100) unique NOT NULL,
+    senha VARCHAR(200) NOT NULL,
+    tipoUsuario CHAR(5),
+	fkEmpresa INT,
+    FOREIGN KEY (fkEmpresa) REFERENCES tbEmpresa (idEmpresa)
 );
 
 CREATE TABLE tbArena(
-                        idArena INT PRIMARY KEY AUTO_INCREMENT,
-                        nomeArena VARCHAR(150) NOT NULL,
-                        cep CHAR(9) NOT NULL NOT NULL,
-                        logradouro VARCHAR(100) NOT NULL,
-                        numero INT NOT NULL,
-                        bairro VARCHAR(100) NOT NULL,
-                        cidade VARCHAR(100) NOT NULL,
-                        uf char(2),
-                        fkEmpresa INT,
-                        FOREIGN KEY (fkEmpresa) REFERENCES tbEmpresa (idEmpresa)
+	idArena INT PRIMARY KEY AUTO_INCREMENT,
+    nomeArena VARCHAR(150) NOT NULL,
+    cep CHAR(9) NOT NULL NOT NULL,
+    logradouro VARCHAR(100) NOT NULL,
+    numero INT NOT NULL,
+    bairro VARCHAR(100) NOT NULL,
+    cidade VARCHAR(100) NOT NULL,
+    uf char(2),
+    fkEmpresa INT,
+    FOREIGN KEY (fkEmpresa) REFERENCES tbEmpresa (idEmpresa)
 );
 
 CREATE TABLE tbComputador(
-                             idComputador VARCHAR(100) PRIMARY KEY,
-                             apelidoPc VARCHAR(100),
-                             sistemaOperacional VARCHAR(30),
-                             processador VARCHAR(100),
-                             discoTotal VARCHAR(50),
-                             memoriaTotal VARCHAR(50),
-                             qtdDiscos INT,
-                             fkArena INT,
-                             FOREIGN KEY (fkArena) REFERENCES tbArena (idArena)
+	idComputador VARCHAR(100) PRIMARY KEY,
+    apelidoPc VARCHAR(100),
+    sistemaOperacional VARCHAR(30),
+    processador VARCHAR(100),
+    discoTotal DOUBLE,
+    memoriaTotal DOUBLE,
+    qtdDiscos INT,
+    fkArena INT,
+    FOREIGN KEY (fkArena) REFERENCES tbArena (idArena)
 );
 
 CREATE TABLE status_pc(
-                          idCaptura INT PRIMARY KEY AUTO_INCREMENT,
-                          memoriaUso DOUBLE,
-                          processadorUso DOUBLE,
-                          discoDisponivel DOUBLE,
-                          tempProcessador DOUBLE,
-                          dtHoraCaptura DATETIME DEFAULT now(),
-                          fkComputador VARCHAR(100),
-                          FOREIGN KEY (fkComputador) REFERENCES tbComputador (idComputador)
+	idCaptura INT PRIMARY KEY AUTO_INCREMENT,
+    memoriaUso DOUBLE,
+    processadorUso DOUBLE,
+    discoDisponivel DOUBLE,
+    dtHoraCaptura DATETIME DEFAULT now(),
+	fkComputador VARCHAR(100),
+    FOREIGN KEY (fkComputador) REFERENCES tbComputador (idComputador)
 );
 
 CREATE TABLE Alerta(
-                       idAlerta INT PRIMARY KEY AUTO_INCREMENT,
-                       descricao VARCHAR(200),
-                       dtHoraAlerta DATETIME DEFAULT now(),
-                       caminhoArquivo VARCHAR(200),
-                       tipoAlerta VARCHAR(150),
-                       fkComputador VARCHAR(100),
-                       FOREIGN KEY (fkComputador) REFERENCES tbComputador(idComputador));
+    idAlerta INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(200),
+    dtHoraAlerta DATETIME DEFAULT now(),
+    caminhoArquivo VARCHAR(200),
+    tipoAlerta VARCHAR(150),
+    fkComputador VARCHAR(100),
+    FOREIGN KEY (fkComputador) REFERENCES tbComputador(idComputador));
 
 CREATE TABLE ArquivosProibidos (
-                                   idArquivoProibido INT AUTO_INCREMENT PRIMARY KEY,
-                                   nomeArquivo VARCHAR(80),
-                                   motivoProibicao TEXT
+    idArquivoProibido INT AUTO_INCREMENT PRIMARY KEY,
+    nomeArquivo VARCHAR(80),
+    motivoProibicao TEXT
 );
 
 CREATE TABLE PastasProibidas (
-                                 idPastaProibida INT AUTO_INCREMENT PRIMARY KEY,
-                                 nomePasta VARCHAR(80),
-                                 motivoProibicao TEXT
+    idPastaProibida INT AUTO_INCREMENT PRIMARY KEY,
+    nomePasta VARCHAR(80),
+    motivoProibicao TEXT
 );
 
--- Função para buscar o ID da empresa de acordo com o CNPJ
+    -- Função para buscar o ID da empresa de acordo com o CNPJ
 DELIMITER $$
 CREATE FUNCTION fn_empresa(fnCnpj char(18))
-    RETURNS int
-    deterministic
+RETURNS int
+deterministic
 BEGIN
     DECLARE vId int;
     set vId = (select idEmpresa from tbEmpresa where CNPJ = fnCnpj);
-return(vId);
+    return(vId);
 END$$;
 DELIMITER ;
 
@@ -154,7 +153,9 @@ INSERT INTO pastasProibidas (nomePasta, motivoProibicao) VALUES
     ('Cheat Engine', 'Uso indevido de cheats');*/
 
 
-/*  insert into tbEmpresa values (null, 'Empresa', 'RazaoSocial', '1231230912391', '(11)92372-0293', 60);
-    insert into tbUsuario values (null, 'Kaua', 'Juhrs', 'a@gmail.com', 'a', 'admin', 1);
-    insert into tbArena values (null, 'asd', '02932-000', 'Rua 1', '11', 'jd Flores', 'São Paulo', 'SP', 1);
-*/
+    /*  insert into tbEmpresa values (null, 'Empresa', 'RazaoSocial', '1231230912391', '(11)92372-0293', 60);
+		insert into tbUsuario values (null, 'Kaua', 'Juhrs', 'a@gmail.com', 'a', 'admin', 1);
+        insert into tbArena values (null, 'asd', '02932-000', 'Rua 1', '11', 'jd Flores', 'São Paulo', 'SP', 1);
+	*/
+
+

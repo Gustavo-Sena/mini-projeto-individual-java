@@ -16,7 +16,7 @@ public class ArquivosPastasProibidosDAO {
 
         ArquivosPastasProibidos arquivoPasta = new ArquivosPastasProibidos();
         List<String> folderBlacklist = new ArrayList<>();
-        String sql = "SELECT nomePasta FROM pastasProibidas";
+        String sql = "SELECT nomePasta FROM PastasProibidas";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -56,7 +56,7 @@ public class ArquivosPastasProibidosDAO {
     public static List<String> pegarFilesBlacklist() {
         ArquivosPastasProibidos arquivoPasta = new ArquivosPastasProibidos();
         List<String> filesBlacklist = new ArrayList<>();
-        String sql = "SELECT nomeArquivo FROM arquivosProibidos";
+        String sql = "SELECT nomeArquivo FROM ArquivosProibidos";
         PreparedStatement ps = null;
         ResultSet rs = null;
 

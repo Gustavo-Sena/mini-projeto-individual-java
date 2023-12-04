@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 public class AlertaDAO {
 
@@ -20,17 +21,19 @@ public class AlertaDAO {
                 "VALUES (?, ?, ?, ?, ?)";
         PreparedStatement ps = null;
         PreparedStatement psSQLServer = null;
-
+        LocalDateTime dtHoraAtual = LocalDateTime.now();
         try {
             ps = Conexao.getConexao().prepareStatement(sql);
             ps.setString(1, alerta.getDescricao());
-            ps.setString(2, alerta.getDtHoraAlerta());
+            ps.setString(2, String.valueOf(dtHoraAtual));
             ps.setString(3, alerta.getCaminhoArquivo());
             ps.setString(4, tipoAlerta);  // Tipo de alerta (Pasta ou Arquivo)
             ps.setString(5, computador.getId());
+
+
             psSQLServer = Conexao.getConexaoSQLServer().prepareStatement(sql);
             psSQLServer.setString(1, alerta.getDescricao());
-            psSQLServer.setString(2, alerta.getDtHoraAlerta());
+            psSQLServer.setObject(2, dtHoraAtual);
             psSQLServer.setString(3, alerta.getCaminhoArquivo());
             psSQLServer.setString(4, tipoAlerta);  // Tipo de alerta (Pasta ou Arquivo)
             psSQLServer.setString(5, computador.getId());
