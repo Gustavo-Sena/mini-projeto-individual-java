@@ -26,8 +26,8 @@ public class ComputadorDAO {
             ps.setString(2, nomePC);
             ps.setString(3, computador.getSO());
             ps.setString(4, computador.getProcessador());
-            ps.setDouble(5, (computador.getDiscoTotal()));
-            ps.setDouble(6, computador.getMemoriaTot());
+            ps.setDouble(5, ExtrairDouble.extrairNumero(Conversor.formatarBytes(computador.getDiscoTotal())));
+            ps.setDouble(6, ExtrairDouble.extrairNumero(Conversor.formatarBytes(computador.getMemoriaTot())));
             ps.setInt(7, computador.getQtdDiscos());
             ps.setString(8,arena);
             ps.execute();
@@ -37,8 +37,8 @@ public class ComputadorDAO {
             psSQLServer.setString(2, nomePC);
             psSQLServer.setString(3, computador.getSO());
             psSQLServer.setString(4, computador.getProcessador());
-            psSQLServer.setDouble(5, computador.getDiscoTotal());
-            psSQLServer.setDouble(6, computador.getMemoriaTot());
+            psSQLServer.setDouble(5, ExtrairDouble.extrairNumero(Conversor.formatarBytes(computador.getDiscoTotal())));;
+            psSQLServer.setDouble(6, ExtrairDouble.extrairNumero(Conversor.formatarBytes(computador.getMemoriaTot())));
             psSQLServer.setInt(7, computador.getQtdDiscos());
             psSQLServer.setString(8, arena);
             psSQLServer.execute();

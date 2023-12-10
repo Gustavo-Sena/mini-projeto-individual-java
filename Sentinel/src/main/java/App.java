@@ -100,12 +100,6 @@ public class App {
         System.out.println("  \\ \\  _ / /    / _ \\     | |   | |     | |_| | |  _|   | |_) | \\___ \\ ");
         System.out.println("   \\  V V /    / ___ \\    | |   | |___  |  _  | | |___  |  _ <   ___) |");
         System.out.println("    \\_\\/_/    /_/   \\_\\   |_|    \\____| |_| |_| |_____| |_| \\_\\ |____/ ");
-        System.out.println("                                                                                             ");
-        System.out.println("      ____    _____   _       _  _______  ___   _    _  ______   _                          ");
-        System.out.println("     / ___|  | ____| | ||    | | |_   _| |_ _| | |  | | |____|  | |                         ");
-        System.out.println("     ||___   |  _| | |  ||   | |   | |    | |  | || | | |  _|   | |                         ");
-        System.out.println("      ___) | | |___  | |  || | |   | |    | |  | |||| | | |___  | |___                      ");
-        System.out.println("     |____/  |_____| |_|   |||_|   |_|   |___| |_|  |_| |_____| |_____|                     \n");
 
 
         // objetos que foram criados na mão
@@ -225,29 +219,31 @@ public class App {
 
                                 if (disco.getVolumes().size() > pontosMontagem) {
                                     verificacaoDisco = 1;
-                                    System.out.println("                _   _____  _____  _   _   ____     _      ___     _                ");
-                                    System.out.println("               / \\ |_   _|| ____|| \\ | | / ___|   / \\    / _ \\   | |               ");
-                                    System.out.println("              / _ \\  | |  |  _|  |  \\| || |      / _ \\  | | | |  | |               ");
-                                    System.out.println("             / ___ \\ | |  | |___ | |\\  || |___  / ___ \\ | |_| |  |_|               ");
-                                    System.out.println("            /_/   \\_\\|_|  |_____||_| \\_| \\____|/_/   \\_  \\___/   (_)               ");
-                                    System.out.println("                                                                                   ");
-                                    System.out.println("                         ____  ___  ____    ____  ___                           ");
-                                    System.out.println("                        |  _ \\|_ _|/ ___|  / ___|/ _ \\                          ");
-                                    System.out.println("                        | | | || | \\___ \\ | |   | | | |                         ");
-                                    System.out.println("                        | |_| || |  ___) || |___| |_| |                         ");
-                                    System.out.println("                        |____/|___||____/  \\____|\\___/                          ");
-                                    System.out.println("                                                                                   ");
-                                    System.out.println("  ____   _____  ____    ____  ___   _   _  _   _  _____  ____  ___  ____    ___  ");
-                                    System.out.println(" |  _ \\ | ____|/ ___|  / ___|/ _ \\ | \\ | || | | || ____|/ ___||_ _||  _ \\  / _ \\ ");
-                                    System.out.println(" | | | ||  _|  \\___ \\ | |   | | | ||  \\| || |_| ||  _| | |     | | | | | || | | |");
-                                    System.out.println(" | |_| || |___  ___) || |___| |_| || |\\  ||  _  || |___| |___  | | | |_| || |_| |");
-                                    System.out.println(" |____/ |_____||____/  \\____|\\___/ |_| \\_||_| |_||_____|\\____||___||____/  \\___/ \n");
+                                    System.out.println("ATENÇÃO!\nDISCO DESCONHECIDO CONECTADO ");
 
                                     // Verifica se o alerta já foi cadastrado antes
                                     if (verificacaoDisco == 1 && !alertaJaCadastrado) {
                                         // Cadastra um alerta quando verificacaoDisco é igual a 1
                                         Alerta alerta = new Alerta();
-                                        alerta.setDescricao("Disco Desconhecido Conectado");
+                                        System.out.println("                _   _____  _____  _   _   ____     _      ___     _                ");
+                                        System.out.println("               / \\ |_   _|| ____|| \\ | | / ___|   / \\    / _ \\   | |               ");
+                                        System.out.println("              / _ \\  | |  |  _|  |  \\| || |      / _ \\  | | | |  | |               ");
+                                        System.out.println("             / ___ \\ | |  | |___ | |\\  || |___  / ___ \\ | |_| |  |_|               ");
+                                        System.out.println("            /_/   \\_\\|_|  |_____||_| \\_| \\____|/_/   \\_  \\___/   (_)               ");
+                                        System.out.println("                                                                                   ");
+                                        System.out.println("                         ____  ___  ____    ____  ___                           ");
+                                        System.out.println("                        |  _ \\|_ _|/ ___|  / ___|/ _ \\                          ");
+                                        System.out.println("                        | | | || | \\___ \\ | |   | | | |                         ");
+                                        System.out.println("                        | |_| || |  ___) || |___| |_| |                         ");
+                                        System.out.println("                        |____/|___||____/  \\____|\\___/                          ");
+                                        System.out.println("                                                                                   ");
+                                        System.out.println("  ____   _____  ____    ____  ___   _   _  _   _  _____  ____  ___  ____    ___  ");
+                                        System.out.println(" |  _ \\ | ____|/ ___|  / ___|/ _ \\ | \\ | || | | || ____|/ ___||_ _||  _ \\  / _ \\ ");
+                                        System.out.println(" | | | ||  _|  \\___ \\ | |   | | | ||  \\| || |_| ||  _| | |     | | | | | || | | |");
+                                        System.out.println(" | |_| || |___  ___) || |___| |_| || |\\  ||  _  || |___| |___  | | | |_| || |_| |");
+                                        System.out.println(" |____/ |_____||____/  \\____|\\___/ |_| \\_||_| |_||_____|\\____||___||____/  \\___/ \n");
+
+
                                         alerta.setCaminhoArquivo("N/A"); // Você pode ajustar conforme necessário
                                         alerta.setDtHoraAlerta(String.valueOf(LocalDateTime.now()));
                                         String tipoAlerta = "Disco Desconhecido";
@@ -293,8 +289,7 @@ public class App {
                         System.out.println("|  _ \\  / \\   |  _ \\    / \\    | | | |/ ___|  / _ \\ ");
                         System.out.println("| |_) |/ _ \\  | |_) |  / _ \\   | | | |\\___ \\ | | | |");
                         System.out.println("|  __// ___ \\ |  _ <  / ___ \\  | |_| | ___) || |_| |");
-                        System.out.println("|_|  /_/   \\_\\|_| \\_\\/_/   \\_\\  \\___/ |____/  \\___/ \n");
-                    } catch (ProgramScanner.ProgramProibidoEncontradoException e) {
+                        System.out.println("|_|  /_/   \\_\\|_| \\_\\/_/   \\_\\  \\___/ |____/  \\___/ \n");                    } catch (ProgramScanner.ProgramProibidoEncontradoException e) {
                         System.out.println(e.getMessage());
 
                         LocalDateTime data = LocalDateTime.now();
@@ -341,6 +336,7 @@ public class App {
 
                         // Aqui deve ser o id do computador
                         AlertaDAO.cadastrarAlerta(alerta, computador, tipoAlerta);
+
 
                         System.out.println("                             _____  ___  ___");
                         System.out.println("                            |  ___|/ _ \\|_ _|");
